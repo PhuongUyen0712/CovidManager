@@ -27,6 +27,14 @@ module.exports = function(sequelize, DataTypes) {
     quantity_unit: {
       type: DataTypes.STRING(10),
       allowNull: true
+    },
+    category_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'Category',
+        key: 'id'
+      }
     }
   }, {
     sequelize,

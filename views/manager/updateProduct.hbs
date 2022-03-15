@@ -9,20 +9,23 @@
                                 <input type="text" class="form-control" name="name" required placeholder="Type something" value="{{name}}"></input>
                         </div>
 
+                        
                         <div class="form-group">
                                 <label>Giá sản phẩm</label>
                                 <div style="display: flex;">
-                                    <input oninput="this.nextElementSibling.value = Intl.NumberFormat('vi-VN').format(this.value) + ' đ' "  type="range" min="1000" max="1000000" step="1000" class="form-control" name="price" required placeholder="Type something" style="width: 330px;accent-color: rgb(30,165,159);" value="{{price}}"></input>
-                                    <output style="margin-left: 20px; font-style: italic; margin-top: 1px;" >{{{formatPrice}}}</output>
+                                    <input type="number" name="price" value={{price}} min = "1000" max = "1000000" step = "1000"  >
+                                    {{!-- <output style="margin-left: 20px; font-style: italic; margin-top: 1px;">100.000 đ</output> --}}
                                 </div>
                         </div>
                         <div class="form-group">
                                 <label>Đơn vị định lượng</label>
                                 <select name="quantity_unit" class="form-control">
-                                    <option value="kg" >kg</option>
-                                    <option value="g">g</option>
-                                    <option value="ml">ml</option>
+                                    <option value="lốc">lốc</option>
+                                    <option value="thùng">thùng</option>
+                                    <option value="gói">gói</option>
                                     <option value="lít">lít</option>
+                                    <option value="cái">cái</option>
+                                    <option value="bịch">bịch</option>
                                 </select>
                         </div>
 

@@ -11,17 +11,20 @@
                         <div class="form-group">
                                 <label>Giá sản phẩm</label>
                                 <div style="display: flex;">
-                                    <input oninput="this.nextElementSibling.value = Intl.NumberFormat('vi-VN').format(this.value) + ' đ' "  type="range" min="1000" max="1000000" value="100000" step="1000" class="form-control" name="price" required placeholder="Type something" style="width: 330px;accent-color: rgb(30,165,159);"/>
+                                    <input type="number" name="price" value="100000" min = "1000" max = "1000000" step = "1000"  >
                                     <output style="margin-left: 20px; font-style: italic; margin-top: 1px;">100.000 đ</output>
                                 </div>
                         </div>
+
                         <div class="form-group">
                                 <label>Đơn vị định lượng</label>
                                 <select name="quantity_unit" class="form-control">
-                                    <option value="kg">kg</option>
-                                    <option value="g">g</option>
-                                    <option value="ml">ml</option>
+                                    <option value="lốc">lốc</option>
+                                    <option value="thùng">thùng</option>
+                                    <option value="gói">gói</option>
                                     <option value="lít">lít</option>
+                                    <option value="cái">cái</option>
+                                    <option value="bịch">bịch</option>
                                 </select>
                         </div>
 
@@ -29,11 +32,20 @@
                                 <label>Link hình ảnh</label>
                                 <input type="text" class="form-control" name="image" required placeholder="Type something"/>
                         </div>
+                        <div class="form-group">
+                            <label>Phân loại:</label>
+                            <select name="category" class="form-control" required>
+                                {{#each category}}
+                                <option value = {{name}}>{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
 
                         <div class="form-group">
                                 <label>Ghi chú</label>
                                 <input type="text" class="form-control" name="note" placeholder="Type something"/>
                         </div>
+                        
                         <div class="form-group">
                             <div>
                                 <button type="submit" class="btn btn-primary waves-effect waves-light">

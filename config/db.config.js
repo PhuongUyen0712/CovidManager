@@ -1,8 +1,8 @@
 module.exports = {
     user: 'postgres',
-    password: '2711',
+    password: '1',
     host: 'localhost',
-    port: '5000', //localhost db port
+    port: '5432', //localhost db port
     database: 'CovidManager',
     dialect: 'postgres',
     pool: {

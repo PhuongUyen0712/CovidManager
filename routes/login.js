@@ -61,10 +61,11 @@ router.post('/', passport.authenticate("local", {
             }
             //res.send(req.user)
 
-        } else {
-            res.redirect('/login')
-
         }
+        //else {
+        //     res.redirect('/login')
+
+        // }
     }
 
 );

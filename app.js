@@ -29,12 +29,13 @@ const userAccount = require("./routes/account");
 const login = require("./routes/login");
 const user = require("./routes/user");
 const purchase = require("./routes/purchase");
+const category = require("./routes/category");
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
     return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
 
 //hbs
-app.set("view engine", "hbs");
+app.set("view engine",  "hbs");
 app.set("views", path.join(__dirname, "views"));
 hbs.registerPartials(__dirname + "/views/partials", function(err) {});
 
@@ -61,31 +62,40 @@ app.use("/account", userAccount);
 app.use("/package", package);
 app.use("/payment", payment);
 app.use("/treatmentPlace", treatmentPlace);
+app.use("/category", category);
 app.use("/login", login);
 app.use("/user", user);
 app.use("/purchase",purchase);
 app.use("/", (req, res) => {
     if (!req.session.user) {
-        res.redirect('/login');
+        res.redirect('/purchase');
+        sidebar:"user"
     }
-    console.log(req.session.user);
-    if(req.session.user.admin){
-    res.render("manager/managerDashboard", {
+  //   if (!req.session.user) {
+  //     res.render('user/purchase',{
+  //       sidebar:"user",
+  //     });
+  // }
+    //console.log(req.session.user);
+    // if(req.session.user.admin){
+    // res.render("manager/managerDashboard", {
+    //     tag: "Dashboard",
+    //     sidebar: "admin"
+    // });
+    // }
+    // else if(req.session.user.manager){
+    // res.render("manager/managerDashboard", {
+    //   tag: "Dashboard",
+    //   sidebar: "manager",
+    // });
+    // }
+    if(req.session.user.manager){
+      res.render("manager/managerDashboard", {
         tag: "Dashboard",
-        sidebar: "admin"
-    });
-    }
-    else if(req.session.user.manager){
-    res.render("manager/managerDashboard", {
-      tag: "Dashboard",
-      sidebar: "manager",
-    });
-    }
-    else{
-      res.render("user/viewInfor", {
-        sidebar: "user",
+        sidebar: "manager",
       });
     }
+
 });
 
 

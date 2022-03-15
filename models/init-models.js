@@ -6,6 +6,8 @@ var _NeccessaryPackage = require("./NeccessaryPackage");
 var _Patient = require("./Patient");
 var _PaymentHistory = require("./PaymentHistory");
 var _Product = require("./Product");
+var _Category = require("./Category");
+
 var _TreatmentPlace = require("./TreatmentPlace");
 var _UserAccount = require("./UserAccount");
 
@@ -19,6 +21,8 @@ function initModels(sequelize) {
   var Product = _Product(sequelize, DataTypes);
   var TreatmentPlace = _TreatmentPlace(sequelize, DataTypes);
   var UserAccount = _UserAccount(sequelize, DataTypes);
+  var Category = _Category(sequelize, DataTypes);
+
 
   PaymentHistory.belongsTo(NeccessaryPackage, { as: "id_package_NeccessaryPackage", foreignKey: "id_package"});
   NeccessaryPackage.hasMany(PaymentHistory, { as: "PaymentHistories", foreignKey: "id_package"});
@@ -34,6 +38,9 @@ function initModels(sequelize) {
   UserAccount.hasMany(ManagerHistory, { as: "ManagerHistories", foreignKey: "id_manager"});
   PaymentHistory.belongsTo(UserAccount, { as: "id_payer_UserAccount", foreignKey: "id_payer"});
   UserAccount.hasMany(PaymentHistory, { as: "PaymentHistories", foreignKey: "id_payer"});
+  Category.hasMany(Product, { as: "Product", foreignKey: "category_id"});
+  Product.belongsTo(Category, { as: "category", foreignKey: "category_id"});
+
 
   return {
     ContactHistory,
@@ -45,6 +52,7 @@ function initModels(sequelize) {
     Product,
     TreatmentPlace,
     UserAccount,
+    Category,
   };
 }
 module.exports = initModels;
